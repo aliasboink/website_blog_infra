@@ -1,7 +1,7 @@
 resource "cloudflare_record" "blog" {
   zone_id         = var.cloudflare_zone_id
   name            = "adrian-docs.com"
-  value           = "b78td1-website-blog-shush.s3-website.eu-central-1.amazonaws.com"
+  value           = aws_s3_bucket_website_configuration.blog.website_endpoint
   type            = "CNAME"
   ttl             = 1
   allow_overwrite = false
@@ -12,7 +12,7 @@ resource "cloudflare_record" "blog" {
 resource "cloudflare_record" "blog_apex" {
   zone_id         = var.cloudflare_zone_id
   name            = "www"
-  value           = "b78td1-website-blog-shush.s3-website.eu-central-1.amazonaws.com"
+  value           = aws_s3_bucket_website_configuration.blog.website_endpoint
   type            = "CNAME"
   ttl             = 1
   allow_overwrite = false

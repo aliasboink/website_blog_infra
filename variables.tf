@@ -11,12 +11,6 @@ variable "bucket_name" {
   default = "www.adrian-docs.com"
 }
 
-# variable "bucket_name_apex" {
-#   type    = string
-#   default = "adrian-docs.com"
-# }
-
 variable "cloudflare_zone_id" {
-  type    = string
-  default = ""
+  type = string
 }
