@@ -1,5 +1,5 @@
 resource "aws_s3_bucket" "blog" {
-  bucket = var.bucket_name
+  bucket = var.bucket_name_blog
   tags   = var.global_tags
 }
 
@@ -11,8 +11,6 @@ resource "aws_s3_bucket_public_access_block" "blog_access" {
   ignore_public_acls      = true
   restrict_public_buckets = false
 }
-
-data "cloudflare_ip_ranges" "cloudflare" {}
 
 data "aws_iam_policy_document" "blog" {
   statement {

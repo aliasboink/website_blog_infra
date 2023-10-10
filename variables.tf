@@ -6,9 +6,14 @@ variable "global_tags" {
   }
 }
 
-variable "bucket_name" {
+variable "bucket_name_blog" {
   type    = string
   default = "www.adrian-docs.com"
+}
+
+variable "bucket_name_apex" {
+  type    = string
+  default = "adrian-docs.com"
 }
 
 variable "cloudflare_zone_id" {
