@@ -1,10 +1,10 @@
-resource "aws_s3_bucket" "blog" {
-  bucket = var.bucket_name_blog
+resource "aws_s3_bucket" "subdomain" {
+  bucket = var.bucket_name_subdomain
   tags   = var.global_tags
 }
 
-resource "aws_s3_bucket_public_access_block" "blog_access" {
-  bucket = aws_s3_bucket.blog.id
+resource "aws_s3_bucket_public_access_block" "subdomain_access" {
+  bucket = aws_s3_bucket.subdomain.id
 
   block_public_acls       = true
   block_public_policy     = false
@@ -12,10 +12,10 @@ resource "aws_s3_bucket_public_access_block" "blog_access" {
   restrict_public_buckets = false
 }
 
-data "aws_iam_policy_document" "blog" {
+data "aws_iam_policy_document" "subdomain" {
   statement {
     actions   = ["s3:GetObject"]
-    resources = ["${aws_s3_bucket.blog.arn}/*"]
+    resources = ["${aws_s3_bucket.subdomain.arn}/*"]
 
     principals {
       type        = "*"
@@ -30,14 +30,14 @@ data "aws_iam_policy_document" "blog" {
   }
 }
 
-resource "aws_s3_bucket_policy" "blog" {
-  bucket = aws_s3_bucket.blog.id
-  policy = data.aws_iam_policy_document.blog.json
+resource "aws_s3_bucket_policy" "subdomain" {
+  bucket = aws_s3_bucket.subdomain.id
+  policy = data.aws_iam_policy_document.subdomain.json
 }
 
-resource "aws_s3_bucket_website_configuration" "blog" {
-  depends_on = [aws_s3_bucket_public_access_block.blog_access]
-  bucket     = aws_s3_bucket.blog.bucket
+resource "aws_s3_bucket_website_configuration" "subdomain" {
+  depends_on = [aws_s3_bucket_public_access_block.subdomain_access]
+  bucket     = aws_s3_bucket.subdomain.bucket
 
   index_document {
     suffix = "index.html"

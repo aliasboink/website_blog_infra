@@ -40,7 +40,7 @@ resource "aws_s3_bucket_website_configuration" "apex" {
   bucket     = aws_s3_bucket.apex.bucket
 
   redirect_all_requests_to {
-    host_name = var.bucket_name_blog
+    host_name = var.bucket_name_subdomain
   }
 
 }

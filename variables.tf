@@ -6,7 +6,7 @@ variable "global_tags" {
   }
 }
 
-variable "bucket_name_blog" {
+variable "bucket_name_subdomain" {
   type    = string
   default = "www.adrian-docs.com"
 }

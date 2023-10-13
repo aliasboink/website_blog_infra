@@ -1,9 +1,9 @@
 data "cloudflare_ip_ranges" "cloudflare" {}
 
-resource "cloudflare_record" "blog" {
+resource "cloudflare_record" "subdomain" {
   zone_id         = var.cloudflare_zone_id
   name            = "www"
-  value           = aws_s3_bucket_website_configuration.blog.website_endpoint
+  value           = aws_s3_bucket_website_configuration.subdomain.website_endpoint
   type            = "CNAME"
   ttl             = 1
   allow_overwrite = false
